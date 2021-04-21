@@ -1,0 +1,13 @@
+Busz menetrend projekt
+
+A buszokat távozási idejük szerint csoportosítjuk a BTS-be (óra és perc). 
+Egy állomásban egy adott számú busz állhat egyszerre, ezek vannak a fában.
+Egy városnak egy adott számú busza van, ezekből néhány áll az állomásban, a többi raktáron van.
+A raktárban érkezési idejük szerint egy sorba rakjuk őket (queue).
+Amikor egy busz távozik az állomásról, az első busz kijön a raktárból és bekerül a a BTS-be.
+A felhasználó az adminisztrátor:
+Új busz hozzáadása a város flottájához.
+Busz távozása az állomásról.
+Busz érkezése a raktárba.
+
+Megjegyzés: Egy busz nem kell beálljon a raktárba, ha van még szabad hely az állomáson.
