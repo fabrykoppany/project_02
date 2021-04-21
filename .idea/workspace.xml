@@ -12,18 +12,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24bffd87-f0ce-4a0e-8caf-e2c46693d6b2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bst_buses.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bst_buses.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buses.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buses.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/queue_buses.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/queue_buses.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/station.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/station.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/time_buses.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/time_buses.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/time_buses.c" beforeDir="false" afterPath="$PROJECT_DIR$/time_buses.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/time_buses.h" beforeDir="false" afterPath="$PROJECT_DIR$/time_buses.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,11 +72,54 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619033752333</updated>
-      <workItem from="1619033754413" duration="2281000" />
+      <workItem from="1619033754413" duration="6648000" />
     </task>
+    <task id="LOCAL-00001" summary="Created structure for buses, bus station, BST, dynamic queue and time">
+      <created>1619036156840</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1619036156840</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Created structure for buses, bus station, BST, dynamic queue and time" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created structure for buses, bus station, BST, dynamic queue and time" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>10</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>11</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>12</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>13</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>5</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
