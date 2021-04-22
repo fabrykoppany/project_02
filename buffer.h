@@ -10,5 +10,7 @@
 #include <string.h>
 
 char *getBuffer();
+char *allocateMemory(int size);
+void reallocateMemory(char **buffer);
 
 #endif //PROJECT_02_BUFFER_H

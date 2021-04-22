@@ -5,15 +5,27 @@
 #include "buffer.h"
 
 char *getBuffer(){
-    char *buffer = (char *) malloc(20 * sizeof(char));
+    char *buffer = allocateMemory(20);
+
+    printf("Text to be added: ");
+    scanf("%[^\n]", buffer);
+
+    reallocateMemory(&buffer);
+
+    return buffer;
+}
+
+char *allocateMemory(int size){
+    char *buffer = (char *) malloc(size * sizeof(char));
 
     if (buffer == NULL){
         printf("Error allocating memory!!!");
         exit(-1);
     }
 
-    printf("Text to be added: ");
-    scanf("%[^\n]", buffer);
-
     return buffer;
+}
+
+void reallocateMemory(char **buffer){
+    *buffer = realloc(*buffer, strlen(*buffer) + 1);
 }
