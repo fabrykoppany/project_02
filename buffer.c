@@ -8,7 +8,7 @@ char *getBuffer(){
     char *buffer = allocateMemory(20);
 
     printf("Text to be added: ");
-    scanf("%[^\n]", buffer);
+    scanf(" %[^\n]", buffer);
 
     reallocateMemory(&buffer);
 
