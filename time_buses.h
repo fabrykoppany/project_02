@@ -5,17 +5,7 @@
 #ifndef PROJECT_02_TIME_BUSES_H
 #define PROJECT_02_TIME_BUSES_H
 
-/*
- * TIME data structure
- * full_time - "hour" converted into minutes + "minute"
- * time_str - time shown in digital form (HH:MM)
- */
-typedef struct{
-    int hour, minute, full_time;
-    char time_str[6];
-}TIME;
-
-#include "buses.h"
+#include "structures.h"
 
 #include <stdio.h>
 #include <stdlib.h>

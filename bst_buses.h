@@ -5,23 +5,11 @@
 #ifndef PROJECT_02_BST_BUSES_H
 #define PROJECT_02_BST_BUSES_H
 
-#include "buses.h"
+#include "structures.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
-/*
- * Binary Search Tree - platform
- * data of the tree is of type BUS
- * sorting happens based on the departure time of a bus
- * early < late
- * platform has a capacity
- */
-typedef struct BST_Node{
-    BUS bus_data;
-    struct BST_Node *left, *right;
-}BST_Node;
 
 BST_Node *create();
 bool isEmpty(BST_Node *root);

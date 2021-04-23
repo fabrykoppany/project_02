@@ -6,18 +6,12 @@
 #define PROJECT_02_BUSES_H
 
 #include "time_buses.h"
+#include "structures.h"
+#include "buffer.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
- * BUS data structure
- * name - stores the bus' name (to be generated from station details)
- * departure_time - departure time of bus in all forms
- */
-typedef struct{
-    char name[20];
-    TIME departure_time;
-}BUS;
+BUS createBus(STATION station, const char *bus_name, TIME departure);
 
 #endif //PROJECT_02_BUSES_H
