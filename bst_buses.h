@@ -13,11 +13,11 @@
 
 BST_Node *create();
 bool isEmpty(BST_Node *root);
-void insert(BST_Node **root, BUS bus);
-bool find(BST_Node *root, int key);
+void insert(STATION *station, BST_Node **root, BUS bus);
+bool find(BST_Node *root, BUS key);
 BST_Node *minimum(BST_Node *root);
 BST_Node *maximum(BST_Node *root);
-void findPredSucc(BST_Node *root, BST_Node **pre, BST_Node **suc, int key);
-void delete(BST_Node **root, int key);
+void findPredSucc(BST_Node *root, BST_Node **pre, BST_Node **suc, BUS key);
+void delete(STATION *station, BST_Node **root, BUS key);
 
 #endif //PROJECT_02_BST_BUSES_H

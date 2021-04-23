@@ -15,6 +15,10 @@ STATION createStation(const char *city_name, const char *station_name, int platf
     strcpy(station.city, city_name);
     station.abbreviation = allocateMemory(5);
     strcpy(station.abbreviation, createCityStationAbbreviation(station));
+    station.root = NULL;
+    station.first = NULL;
+    station.platform_size = 0;
+    station.depot_size = 0;
 
     return station;
 }

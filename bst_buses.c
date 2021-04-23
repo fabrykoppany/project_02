@@ -23,29 +23,36 @@ bool isEmpty(BST_Node *root){
     return false;
 }
 
-void insert(BST_Node **root, BUS bus){
-    if (isEmpty(*root)){
-        *root = create();
-        (*root)->left = NULL;
-        (*root)->right = NULL;
-        (*root)->bus_data = bus;
-    } else{
-        if (bus.departure_time.full_time <= (*root)->bus_data.departure_time.full_time){
-            insert(&(*root)->left, bus);
-        } else{
-            insert(&(*root)->right, bus);
+void insert(STATION *station, BST_Node **root, BUS bus) {
+    if (station->platform_capacity == station->platform_size){
+        printf("The platform is full.\n");
+        // will insert into queue
+        return;
+    } else {
+        if (isEmpty(*root)) {
+            *root = create();
+            (*root)->left = NULL;
+            (*root)->right = NULL;
+            (*root)->bus_data = bus;
+            ++station->platform_size;
+        } else {
+            if (bus.departure_time.full_time <= (*root)->bus_data.departure_time.full_time) {
+                insert(station, &(*root)->left, bus);
+            } else {
+                insert(station, &(*root)->right, bus);
+            }
         }
     }
 }
 
-bool find(BST_Node *root, int key){
+bool find(BST_Node *root, BUS key){
     if (isEmpty(root)){
         return false;
     } else {
-        if (key < root->bus_data.departure_time.full_time){
+        if (key.departure_time.full_time < root->bus_data.departure_time.full_time){
             find(root->left, key);
         } else{
-            if (key > root->bus_data.departure_time.full_time){
+            if (key.departure_time.full_time > root->bus_data.departure_time.full_time){
                 find(root->right, key);
             } else{
                 return true;
@@ -74,11 +81,11 @@ BST_Node *maximum(BST_Node *root){
     return ptr;
 }
 
-void findPredSucc(BST_Node *root, BST_Node **pre, BST_Node **suc, int key){
+void findPredSucc(BST_Node *root, BST_Node **pre, BST_Node **suc, BUS key){
     if (isEmpty(root)){
         return;
     } else{
-        if (root->bus_data.departure_time.full_time == key){
+        if (root->bus_data.departure_time.full_time == key.departure_time.full_time){
             if (root->left != NULL){
                 *pre = maximum(root->left);
             }
@@ -88,7 +95,7 @@ void findPredSucc(BST_Node *root, BST_Node **pre, BST_Node **suc, int key){
             }
         }
 
-        if (root->bus_data.departure_time.full_time > key){
+        if (root->bus_data.departure_time.full_time > key.departure_time.full_time){
             *suc = root;
             findPredSucc(root->left, pre, suc, key);
         } else{
@@ -98,40 +105,50 @@ void findPredSucc(BST_Node *root, BST_Node **pre, BST_Node **suc, int key){
     }
 }
 
-void delete(BST_Node **root, int key){
+void delete(STATION *station, BST_Node **root, BUS key) {
     if (isEmpty(*root)){
         return;
     }
 
-    if (key < (*root)->bus_data.departure_time.full_time){
-        delete(&(*root)->left, key);
+    if ((*root)->left != NULL) {
+        if (key.departure_time.full_time < (*root)->bus_data.departure_time.full_time) {
+            delete(station, &(*root)->left, key);
+        }
     }
 
     else {
-        if (key > (*root)->right->bus_data.departure_time.full_time){
-            delete(&(*root)->right, key);
+        if ((*root)->right != NULL) {
+            if (key.departure_time.full_time > (*root)->right->bus_data.departure_time.full_time) {
+                delete(station, &(*root)->right, key);
+            }
         }
 
-        else{
-            if ((*root)->left == NULL){
-                BST_Node *temp = (*root)->right;
-                free(*root);
-                *root = temp;
-                return;
-            }
-
-            else{
-                if ((*root)->right == NULL){
-                    BST_Node *temp = (*root)->left;
+        else {
+            if ((*root)->bus_data.departure_time.full_time == key.departure_time.full_time) {
+                if ((*root)->left == NULL) {
+                    BST_Node *temp = (*root)->right;
                     free(*root);
                     *root = temp;
+                    --station->platform_size;
                     return;
+                } else {
+                    if ((*root)->right == NULL) {
+                        BST_Node *temp = (*root)->left;
+                        free(*root);
+                        *root = temp;
+                        --station->platform_size;
+                        return;
+                    }
                 }
-            }
 
-            BST_Node *temp = minimum((*root)->right);
-            (*root)->bus_data = temp->bus_data;
-            delete(&(*root)->right, temp->bus_data.departure_time.full_time);
+                BST_Node *temp = minimum((*root)->right);
+                (*root)->bus_data = temp->bus_data;
+                delete(station, &(*root)->right, temp->bus_data);
+            }
+            else{
+                printf("No such element.\n");
+                return;
+            }
         }
     }
 
