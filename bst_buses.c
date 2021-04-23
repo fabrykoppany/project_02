@@ -25,8 +25,8 @@ bool isEmptyBST(BST_Node *root){
 
 void insert(STATION *station, BST_Node **root, BUS bus) {
     if (station->platform_capacity == station->platform_size){
-        printf("The platform is full.\n");
-        // will insert into queue
+        printf("The platform is full. Now adding to depot...\n");
+        enter(station, &station->first, &station->last, bus);
         return;
     } else {
         if (isEmptyBST(*root)) {
@@ -153,4 +153,11 @@ void delete(STATION *station, BST_Node **root, BUS key) {
     }
 
     return;
+}
+
+void takeBussesFromDepot(STATION *station, BST_Node **root){
+    while (station->platform_capacity > station->platform_size && !isEmptyQ(station->first, station->last)){
+        BUS bus = leave(station, &station->first, station->last);
+        insert(station, root, bus);
+    }
 }

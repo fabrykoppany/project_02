@@ -18,7 +18,7 @@ queueNode *createQ(){
 }
 
 bool isEmptyQ(queueNode *first, queueNode *last){
-    if (first == NULL && last == NULL){
+    if (first == NULL || last == NULL){
         return true;
     }
 

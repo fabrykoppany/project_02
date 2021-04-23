@@ -6,6 +6,7 @@
 #define PROJECT_02_BST_BUSES_H
 
 #include "structures.h"
+#include "queue_buses.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,5 +20,6 @@ BST_Node *minimum(BST_Node *root);
 BST_Node *maximum(BST_Node *root);
 void findPredSucc(BST_Node *root, BST_Node **pre, BST_Node **suc, BUS key);
 void delete(STATION *station, BST_Node **root, BUS key);
+void takeBussesFromDepot(STATION *station, BST_Node **root);
 
 #endif //PROJECT_02_BST_BUSES_H
