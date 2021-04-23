@@ -4,7 +4,7 @@
 
 #include "bst_buses.h"
 
-BST_Node *create(){
+BST_Node *createBST(){
     BST_Node *new_node = (BST_Node *) calloc(1, sizeof(BST_Node));
 
     if (new_node == NULL){
@@ -15,7 +15,7 @@ BST_Node *create(){
     return new_node;
 }
 
-bool isEmpty(BST_Node *root){
+bool isEmptyBST(BST_Node *root){
     if (root == NULL){
         return true;
     }
@@ -29,8 +29,8 @@ void insert(STATION *station, BST_Node **root, BUS bus) {
         // will insert into queue
         return;
     } else {
-        if (isEmpty(*root)) {
-            *root = create();
+        if (isEmptyBST(*root)) {
+            *root = createBST();
             (*root)->left = NULL;
             (*root)->right = NULL;
             (*root)->bus_data = bus;
@@ -46,7 +46,7 @@ void insert(STATION *station, BST_Node **root, BUS bus) {
 }
 
 bool find(BST_Node *root, BUS key){
-    if (isEmpty(root)){
+    if (isEmptyBST(root)){
         return false;
     } else {
         if (key.departure_time.full_time < root->bus_data.departure_time.full_time){
@@ -82,7 +82,7 @@ BST_Node *maximum(BST_Node *root){
 }
 
 void findPredSucc(BST_Node *root, BST_Node **pre, BST_Node **suc, BUS key){
-    if (isEmpty(root)){
+    if (isEmptyBST(root)){
         return;
     } else{
         if (root->bus_data.departure_time.full_time == key.departure_time.full_time){
@@ -106,7 +106,7 @@ void findPredSucc(BST_Node *root, BST_Node **pre, BST_Node **suc, BUS key){
 }
 
 void delete(STATION *station, BST_Node **root, BUS key) {
-    if (isEmpty(*root)){
+    if (isEmptyBST(*root)){
         return;
     }
 

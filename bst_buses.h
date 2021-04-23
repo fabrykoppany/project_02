@@ -11,8 +11,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-BST_Node *create();
-bool isEmpty(BST_Node *root);
+BST_Node *createBST();
+bool isEmptyBST(BST_Node *root);
 void insert(STATION *station, BST_Node **root, BUS bus);
 bool find(BST_Node *root, BUS key);
 BST_Node *minimum(BST_Node *root);
