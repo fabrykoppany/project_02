@@ -4,15 +4,11 @@
 
 #include "bus_menu.h"
 
-void mainMenu(STATION *station){
+void clearScreen(){
     system("cls");
+}
 
-    printf("Welcome to the SapiBus bus managment tool!\n\n");
-    printf("You can do the following: \n\n");
-    printf("|->1. stations - Access your existing stations or add a new station to the database\n");
-    printf("\n###########################\n");
-    printf("\n|->0. EXIT - exit the application\n\n");
-
+int takeAnswer(){
     int choice = 0;
     char *answer = allocateMemory(20);
 
@@ -26,17 +22,31 @@ void mainMenu(STATION *station){
         choice = -1;
     }
 
+    free(answer);
+
+    return choice;
+}
+
+void mainMenu(STATION *station){
+    clearScreen();
+
+    printf("Welcome to the SapiBus bus managment tool!\n\n");
+    printf("You can do the following: \n\n");
+    printf("|->1. stations - Access your existing stations or add a new station to the database\n");
+    printf("\n###########################\n");
+    printf("\n|->0. EXIT - exit the application\n\n");
+
+    int choice = takeAnswer();
+
     switch (choice) {
         case 1: stationMenu(station); choice = 0; break;
         case 0: exit(1);
         default: printf("No such answer. Please try again."); getch(); mainMenu(station);
     }
-
-    free(answer);
 }
 
 void stationMenu(STATION *station){
-    system("cls");
+    clearScreen();
 
     printf("####Station Menu####\n\n");
     printf("You can do the following:\n\n");
@@ -45,18 +55,7 @@ void stationMenu(STATION *station){
     printf("\n###########################\n");
     printf("\n|->0. EXIT - exit the application\n\n");
 
-    int choice = 0;
-    char *answer = allocateMemory(20);
-
-    printf("Waiting for an answer... ");
-    scanf("%s", answer);
-
-    if (onlyDigitsStr(answer)){
-        choice = atoi(answer);
-    }
-    else {
-        choice = -1;
-    }
+    int choice = takeAnswer();
 
     switch (choice) {
         case 1: choice = 0; break;
@@ -64,12 +63,10 @@ void stationMenu(STATION *station){
         case 0: exit(1);
         default: printf("No such answer. Please try again."); getch(); stationMenu(station);
     }
-
-    free(answer);
 }
 
 void creatStationMenu(STATION *station){
-    system("cls");
+    clearScreen();
 
     char *city_name, *station_name;
     int p_cap, d_cap;
@@ -101,7 +98,7 @@ void creatStationMenu(STATION *station){
 }
 
 void busMenu(STATION *station){
-    system("cls");
+    clearScreen();
 
     printf("####Bus managment####\n\n");
     printf("\tNumber of buses on platform: %i\n", station->platform_size);
@@ -115,18 +112,7 @@ void busMenu(STATION *station){
     printf("\n###########################\n");
     printf("\n|->0. EXIT - exit the application\n\n");
 
-    int choice = 0;
-    char *answer = allocateMemory(20);
-
-    printf("Waiting for an answer... ");
-    scanf("%s", answer);
-
-    if (onlyDigitsStr(answer)){
-        choice = atoi(answer);
-    }
-    else {
-        choice = -1;
-    }
+    int choice = takeAnswer();
 
     switch (choice) {
         case 1:
