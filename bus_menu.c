@@ -156,6 +156,8 @@ void busMenu(STATION *station){
 
             free(name);
 
+            printf("\nPress a key to continue...");
+            getch();
             busMenu(station);
             break;
         case 3: takeBussesFromDepot(station, &station->root); busMenu(station); break;

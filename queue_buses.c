@@ -26,6 +26,11 @@ bool isEmptyQ(queueNode *first, queueNode *last){
 }
 
 void enter(STATION *station, queueNode **first, queueNode **last, BUS bus){
+    if (findQ(*first, *last, bus)){
+        printf("This bus already exists. Try another one.\n");
+        return;
+    }
+
     if (station->depot_size != station->depot_capacity) {
         queueNode *new = createQ();
 
@@ -77,4 +82,22 @@ void listQ(queueNode *first, queueNode *last){
     }
 
     printf("Depot is empty.\n");
+}
+
+bool findQ(queueNode *first, queueNode *last, BUS key){
+    if (isEmptyQ(first, last)){
+        return false;
+    }
+
+    queueNode *aux = first;
+
+    while (aux != NULL){
+        if (!strcmp(aux->bus_data.name, key.name) && aux){
+            return true;
+        }
+
+        aux = aux->next;
+    }
+
+    return false;
 }

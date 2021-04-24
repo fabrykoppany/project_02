@@ -15,7 +15,7 @@
 BST_Node *createBST();
 bool isEmptyBST(BST_Node *root);
 void insert(STATION *station, BST_Node **root, BUS bus);
-bool find(BST_Node *root, BUS key);
+bool findBST(BST_Node *root, BUS key);
 BST_Node *minimum(BST_Node *root);
 BST_Node *maximum(BST_Node *root);
 void findPredSucc(BST_Node *root, BST_Node **pre, BST_Node **suc, BUS key);

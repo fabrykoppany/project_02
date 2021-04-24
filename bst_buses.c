@@ -24,6 +24,11 @@ bool isEmptyBST(BST_Node *root){
 }
 
 void insert(STATION *station, BST_Node **root, BUS bus) {
+    if (findBST(*root, bus)){
+        printf("This bus already exists. Try another one.");
+        return;
+    }
+
     if (station->platform_capacity == station->platform_size){
         printf("The platform is full. Now adding to depot...\n");
         enter(station, &station->first, &station->last, bus);
@@ -45,15 +50,15 @@ void insert(STATION *station, BST_Node **root, BUS bus) {
     }
 }
 
-bool find(BST_Node *root, BUS key){
+bool findBST(BST_Node *root, BUS key){
     if (isEmptyBST(root)){
         return false;
     } else {
         if (key.departure_time.full_time < root->bus_data.departure_time.full_time){
-            find(root->left, key);
+            findBST(root->left, key);
         } else{
             if (key.departure_time.full_time > root->bus_data.departure_time.full_time){
-                find(root->right, key);
+                findBST(root->right, key);
             } else{
                 return true;
             }

@@ -43,8 +43,6 @@ char* convertHMToStr(int hour, int minute){
             strcat(minute_str, "0");
         }
 
-        printf("\n%c\n", minute_str[1]);
-
         strcpy(time, hour_str);
         strcat(time, ":");
         strcat(time, minute_str);
