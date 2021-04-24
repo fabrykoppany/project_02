@@ -61,3 +61,20 @@ BUS leave(STATION *station, queueNode **first, queueNode *last){
 
     printf("The queue is empty.\n");
 }
+
+void listQ(queueNode *first, queueNode *last){
+    if (!isEmptyQ(first, last)) {
+        queueNode *aux = first;
+        int counter = 0;
+
+        while (aux != NULL) {
+            ++counter;
+            printf("%i.%s: leaves at %s\n", counter, aux->bus_data.name, aux->bus_data.departure_time.time_str);
+            aux = aux->next;
+        }
+
+        return;
+    }
+
+    printf("Depot is empty.\n");
+}

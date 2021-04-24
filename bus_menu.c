@@ -76,10 +76,10 @@ void creatStationMenu(STATION *station){
 
     printf("####Create a new station####\n\n");
 
-    printf("The name of the city_name you want to register your new station:\n");
+    printf("The name of the city you want to register your new station: ");
     city_name = getCityName();
 
-    printf("The name of the station itself:\n");
+    printf("The name of the station itself: ");
     station_name = getStationName();
 
     printf("The station's platform's capacity: ");
@@ -90,10 +90,10 @@ void creatStationMenu(STATION *station){
 
     *station = createStation(city_name, station_name, p_cap, d_cap);
 
-    printf("The city in which your station is located in: %s", station->city);
-    printf("Your station's name: %s", station->name);
-    printf("The station's platform's and depot's capacity: %i - %i", station->platform_capacity, station->depot_capacity);
-    printf("The abbreviation your busses are going to take: %s", station->abbreviation);
+    printf("\nThe city in which your station is located in: %s\n", station->city);
+    printf("Your station's name: %s\n", station->name);
+    printf("The station's platform's and depot's capacity: %i - %i\n", station->platform_capacity, station->depot_capacity);
+    printf("The abbreviation your busses are going to take: %s\n\n", station->abbreviation);
 
     printf("If you're happy with the changes, press a key to jump to the bus managment tool..."); getch();
 
@@ -130,7 +130,7 @@ void busMenu(STATION *station){
 
     switch (choice) {
         case 1:
-            printf("Name of the bus: \n");
+            printf("Name of the bus: ");
             char *name = getBuffer();
 
             int hour, minute;
@@ -145,7 +145,7 @@ void busMenu(STATION *station){
             busMenu(station);
             break;
         case 2:
-            printf("Name of the bus: \n");
+            printf("Name of the bus: ");
             name = getBuffer();
 
             printf("Time of the bus' departure (HH:MM): ");
@@ -159,6 +159,7 @@ void busMenu(STATION *station){
             busMenu(station);
             break;
         case 3: takeBussesFromDepot(station, &station->root); busMenu(station); break;
+        case 4: listQ(station->first, station->last);  printf("\nPress a key to continue..."); getch(); busMenu(station); break;
         case 0: exit(1);
         default: printf("No such answer. Please try again."); getch(); busMenu(station);
     }
