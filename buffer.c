@@ -7,7 +7,6 @@
 char *getBuffer(){
     char *buffer = allocateMemory(20);
 
-    printf("Text to be added: ");
     scanf(" %[^\n]", buffer);
 
     reallocateMemory(&buffer);
@@ -28,4 +27,14 @@ char *allocateMemory(int size){
 
 void reallocateMemory(char **buffer){
     *buffer = realloc(*buffer, strlen(*buffer) + 1);
+}
+
+bool onlyDigitsStr(char *buffer){
+    for (int i = 0; i < strlen(buffer); ++i){
+        if (!isdigit(buffer[i])){
+            return false;
+        }
+    }
+
+    return true;
 }
