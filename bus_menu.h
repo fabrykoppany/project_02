@@ -20,8 +20,5 @@ void mainMenu(STATION *station);
 void stationMenu(STATION *station);
 void creatStationMenu(STATION *station);
 void busMenu(STATION *station);
-void printBusesMenu(STATION station);
-void printQueueMenu(STATION station);
-void printBSTMenu(STATION station);
 
 #endif //PROJECT_02_BUS_MENU_H
