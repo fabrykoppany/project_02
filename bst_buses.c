@@ -161,3 +161,16 @@ void takeBussesFromDepot(STATION *station, BST_Node **root){
         insert(station, root, bus);
     }
 }
+
+void listBST(BST_Node *root){
+    if (root == NULL){
+        return;
+    }
+
+    int counter = 0;
+
+    listBST(root->left);
+    ++counter;
+    printf("%i.%s: leaves at %s\n", counter, root->bus_data.name, root->bus_data.departure_time.time_str);
+    listBST(root->right);
+}

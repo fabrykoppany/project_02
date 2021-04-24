@@ -159,7 +159,15 @@ void busMenu(STATION *station){
             busMenu(station);
             break;
         case 3: takeBussesFromDepot(station, &station->root); busMenu(station); break;
-        case 4: listQ(station->first, station->last);  printf("\nPress a key to continue..."); getch(); busMenu(station); break;
+        case 4:
+            if (isEmptyBST(station->root)){
+                printf("Platform is empty.\n\nPress a key to continue...");
+                getch();
+                busMenu(station);
+            }
+
+            listBST(station->root); printf("\nPress a key to continue..."); getch(); busMenu(station); break;
+        case 5: listQ(station->first, station->last);  printf("\nPress a key to continue..."); getch(); busMenu(station); break;
         case 0: exit(1);
         default: printf("No such answer. Please try again."); getch(); busMenu(station);
     }
