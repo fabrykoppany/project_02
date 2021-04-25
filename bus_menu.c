@@ -106,9 +106,10 @@ void busMenu(STATION *station){
     printf("You can do the following: \n\n");
     printf("|->1. Add a bus directly on the platform. If it doesn't fit in, we'll add it to the depot.\n");
     printf("|->2. Add a bus to the depot.\n");
-    printf("|->3. Take out as many buses out from depot and onto the platform as possible.\n");
-    printf("|->4. List the buses that are currently on the platform.\n");
-    printf("|->5. List the buses that are currently in the depot.\n");
+    printf("|->3. Release a bus from the platform.\n");
+    printf("|->4. Take out as many buses out from depot and onto the platform as possible.\n");
+    printf("|->5. List the buses that are currently on the platform.\n");
+    printf("|->6. List the buses that are currently in the depot.\n");
     printf("\n###########################\n");
     printf("\n|->0. EXIT - exit the application\n\n");
 
@@ -146,8 +147,22 @@ void busMenu(STATION *station){
             getch();
             busMenu(station);
             break;
-        case 3: takeBussesFromDepot(station, &station->root); busMenu(station); break;
-        case 4:
+        case 3:
+            printf("The next bus in line will leave the platform.\n");
+
+            if (minimum(station->root) == NULL){
+                printf("No bus yet on the platform.\n");
+            }
+            else{
+                BUS leaving = minimum(station->root)->bus_data;
+                delete(station, &station->root, leaving);
+                printf("%s has left at %s.\n", leaving.name, leaving.departure_time.time_str);
+            }
+
+            printf("Press a key to continue...");
+            getch(); busMenu(station);
+        case 4: takeBussesFromDepot(station, &station->root); busMenu(station); break;
+        case 5:
             if (isEmptyBST(station->root)){
                 printf("Platform is empty.\n\nPress a key to continue...");
                 getch();
@@ -155,7 +170,7 @@ void busMenu(STATION *station){
             }
 
             listBST(station->root); printf("\nPress a key to continue..."); getch(); busMenu(station); break;
-        case 5: listQ(station->first, station->last);  printf("\nPress a key to continue..."); getch(); busMenu(station); break;
+        case 6: listQ(station->first, station->last);  printf("\nPress a key to continue..."); getch(); busMenu(station); break;
         case 0: exit(1);
         default: printf("No such answer. Please try again."); getch(); busMenu(station);
     }
