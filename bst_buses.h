@@ -19,7 +19,8 @@ bool findBST(BST_Node *root, BUS key);
 BST_Node *minimum(BST_Node *root);
 BST_Node *maximum(BST_Node *root);
 void findPredSucc(BST_Node *root, BST_Node **pre, BST_Node **suc, BUS key);
-void delete(STATION *station, BST_Node **root, BUS key);
+BST_Node *delete(STATION *station, BST_Node *root, BUS key);
+BST_Node *emptyPlatform(STATION *station, BST_Node *root);
 void takeBussesFromDepot(STATION *station, BST_Node **root);
 void listBST(BST_Node *root);
 

@@ -110,54 +110,52 @@ void findPredSucc(BST_Node *root, BST_Node **pre, BST_Node **suc, BUS key){
     }
 }
 
-void delete(STATION *station, BST_Node **root, BUS key) {
-    if (isEmptyBST(*root)){
-        return;
+BST_Node *delete(STATION *station, BST_Node *root, BUS key) {
+    if (isEmptyBST(root)){
+        return root;
     }
 
-    if ((*root)->left != NULL) {
-        if (key.departure_time.full_time < (*root)->bus_data.departure_time.full_time) {
-            delete(station, &(*root)->left, key);
-        }
+    if (key.departure_time.full_time < root->bus_data.departure_time.full_time){
+        root->left = delete(station, root->left, key);
     }
 
-    else {
-        if ((*root)->right != NULL) {
-            if (key.departure_time.full_time > (*root)->right->bus_data.departure_time.full_time) {
-                delete(station, &(*root)->right, key);
-            }
+    else{
+        if (key.departure_time.full_time > root->bus_data.departure_time.full_time){
+            root->right = delete(station, root->right, key);
         }
 
-        else {
-            if ((*root)->bus_data.departure_time.full_time == key.departure_time.full_time) {
-                if ((*root)->left == NULL) {
-                    BST_Node *temp = (*root)->right;
-                    free(*root);
-                    *root = temp;
-                    --station->platform_size;
-                    return;
-                } else {
-                    if ((*root)->right == NULL) {
-                        BST_Node *temp = (*root)->left;
-                        free(*root);
-                        *root = temp;
-                        --station->platform_size;
-                        return;
-                    }
-                }
-
-                BST_Node *temp = minimum((*root)->right);
-                (*root)->bus_data = temp->bus_data;
-                delete(station, &(*root)->right, temp->bus_data);
+        else{
+            if (root->left == NULL){
+                BST_Node *temp = root->right;
+                free(root);
+                --station->platform_size;
+                return temp;
             }
+
             else{
-                printf("No such element.\n");
-                return;
+                if (root->right == NULL){
+                    BST_Node *temp = root->left;
+                    free(root);
+                    --station->platform_size;
+                    return temp;
+                }
             }
+
+            BST_Node *temp = minimum(root->right);
+            root->bus_data = temp->bus_data;
+            root->right = delete(station, root->right, temp->bus_data);
         }
     }
 
-    return;
+    return root;
+}
+
+BST_Node *emptyPlatform(STATION *station, BST_Node *root){
+    while (!isEmptyBST(root)){
+        root = delete(station, root, minimum(root)->bus_data);
+    }
+
+    return root;
 }
 
 void takeBussesFromDepot(STATION *station, BST_Node **root){
@@ -167,15 +165,12 @@ void takeBussesFromDepot(STATION *station, BST_Node **root){
     }
 }
 
-void listBST(BST_Node *root){
+void listBST(BST_Node *root) {
     if (root == NULL){
         return;
     }
 
-    int counter = 0;
-
     listBST(root->left);
-    ++counter;
-    printf("%i.%s: leaves at %s\n", counter, root->bus_data.name, root->bus_data.departure_time.time_str);
+    printf("%s: leaves at %s\n", root->bus_data.name, root->bus_data.departure_time.time_str);
     listBST(root->right);
 }

@@ -92,7 +92,7 @@ void creatStationMenu(STATION *station){
     printf("The station's platform's and depot's capacity: %i - %i\n", station->platform_capacity, station->depot_capacity);
     printf("The abbreviation your busses are going to take: %s\n\n", station->abbreviation);
 
-    printf("If you're happy with the changes, press a key to jump to the bus managment tool..."); getch();
+    //printf("If you're happy with the changes, press a key to jump to the bus managment tool..."); getch();
 
     busMenu(station);
 }
@@ -107,9 +107,10 @@ void busMenu(STATION *station){
     printf("|->1. Add a bus directly on the platform. If it doesn't fit in, we'll add it to the depot.\n");
     printf("|->2. Add a bus to the depot.\n");
     printf("|->3. Release a bus from the platform.\n");
-    printf("|->4. Take out as many buses out from depot and onto the platform as possible.\n");
-    printf("|->5. List the buses that are currently on the platform.\n");
-    printf("|->6. List the buses that are currently in the depot.\n");
+    printf("|->4. Release every bus from the platform.\n");
+    printf("|->5. Take out as many buses out from depot and onto the platform as possible.\n");
+    printf("|->6. List the buses that are currently on the platform.\n");
+    printf("|->7. List the buses that are currently in the depot.\n");
     printf("\n###########################\n");
     printf("\n|->0. EXIT - exit the application\n\n");
 
@@ -155,14 +156,15 @@ void busMenu(STATION *station){
             }
             else{
                 BUS leaving = minimum(station->root)->bus_data;
-                delete(station, &station->root, leaving);
+                station->root = delete(station, station->root, leaving);
                 printf("%s has left at %s.\n", leaving.name, leaving.departure_time.time_str);
             }
 
             printf("Press a key to continue...");
             getch(); busMenu(station);
-        case 4: takeBussesFromDepot(station, &station->root); busMenu(station); break;
-        case 5:
+        case 4: station->root = emptyPlatform(station, station->root); printf("Every bus has left the platform.\n"); printf("\nPress a key to continue..."); getch(); busMenu(station);
+        case 5: takeBussesFromDepot(station, &station->root); busMenu(station); break;
+        case 6:
             if (isEmptyBST(station->root)){
                 printf("Platform is empty.\n\nPress a key to continue...");
                 getch();
@@ -170,7 +172,7 @@ void busMenu(STATION *station){
             }
 
             listBST(station->root); printf("\nPress a key to continue..."); getch(); busMenu(station); break;
-        case 6: listQ(station->first, station->last);  printf("\nPress a key to continue..."); getch(); busMenu(station); break;
+        case 7: listQ(station->first, station->last);  printf("\nPress a key to continue..."); getch(); busMenu(station); break;
         case 0: exit(1);
         default: printf("No such answer. Please try again."); getch(); busMenu(station);
     }
