@@ -92,7 +92,9 @@ void creatStationMenu(STATION *station){
     printf("The station's platform's and depot's capacity: %i - %i\n", station->platform_capacity, station->depot_capacity);
     printf("The abbreviation your busses are going to take: %s\n\n", station->abbreviation);
 
-    //printf("If you're happy with the changes, press a key to jump to the bus managment tool..."); getch();
+    printf("If you're happy with the changes, press a key to jump to the bus managment tool..."); getch();
+
+    free(city_name); free(station_name);
 
     busMenu(station);
 }
