@@ -25,7 +25,7 @@ bool isEmptyBST(BST_Node *root){
 
 void insert(STATION *station, BST_Node **root, BUS bus) {
     if (findBST(*root, bus)){
-        printf("This bus already exists. Try another one.");
+        printf("No two buses can leave at the same time.");
         return;
     }
 
