@@ -128,6 +128,25 @@ void busMenu(STATION *station){
             scanf("%i%i", &hour, &minute);
 
             BUS bus = createBus(*station, name, createTime(hour, minute));
+
+            if (busNameTakenBST(station->root, bus.name)){
+                printf("Bus name is already taken. Please try again.\n");
+
+                printf("\nPress a key to continue...");
+                getch();
+
+                busMenu(station);
+            }
+
+            if (findQ(station->first, station->last, bus)){
+                printf("Bus name is already taken or another bus leaves at the same time. Please try again.\n");
+
+                printf("\nPress a key to continue...");
+                getch();
+
+                busMenu(station);
+            }
+
             insert(station, &station->root, bus);
 
             free(name);
@@ -145,6 +164,25 @@ void busMenu(STATION *station){
             scanf("%i%i", &hour, &minute);
 
             bus = createBus(*station, name, createTime(hour, minute));
+
+            if (busNameTakenBST(station->root, bus.name)){
+                printf("Bus name is already taken. Please try again.\n");
+
+                printf("\nPress a key to continue...");
+                getch();
+
+                busMenu(station);
+            }
+
+            if (findBST(station->root, bus)){
+                printf("No two buses can leave at the same time. Please try again.\n");
+
+                printf("\nPress a key to continue...");
+                getch();
+
+                busMenu(station);
+            }
+
             enter(station, &station->first, &station->last, bus);
 
             free(name);

@@ -92,7 +92,7 @@ bool findQ(queueNode *first, queueNode *last, BUS key){
     queueNode *aux = first;
 
     while (aux != NULL){
-        if (!strcmp(aux->bus_data.name, key.name) && aux){
+        if ((!strcmp(aux->bus_data.name, key.name) && aux) || aux->bus_data.departure_time.full_time == key.departure_time.full_time){
             return true;
         }
 

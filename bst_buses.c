@@ -66,6 +66,23 @@ bool findBST(BST_Node *root, BUS key){
     }
 }
 
+bool busNameTakenBST(BST_Node *root, const char *bus_name){
+    if (root == NULL){
+        return false;
+    }
+
+    if (strcmp(root->bus_data.name, bus_name) == 0){
+        return true;
+    }
+    else {
+        if (busNameTakenBST(root->left, bus_name) == false) {
+            return busNameTakenBST(root->right, bus_name);
+        } else {
+            return true;
+        }
+    }
+}
+
 BST_Node *minimum(BST_Node *root){
     BST_Node *ptr = root;
 
