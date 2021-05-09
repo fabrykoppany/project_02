@@ -1,21 +1,17 @@
-//
-// Created by koppa on 2021. 04. 23..
-//
-
 #include "bus_menu.h"
 
-void clearScreen(){
+void clearScreen() {
     system("cls");
 }
 
-int takeAnswer(){
+int takeAnswer() {
     int choice = 0;
     char *answer = allocateMemory(20);
 
     printf("Waiting for an answer... ");
     scanf("%s", answer);
 
-    if (onlyDigitsStr(answer)){
+    if (onlyDigitsStr(answer)) {
         choice = atoi(answer);
     }
     else {
@@ -27,7 +23,7 @@ int takeAnswer(){
     return choice;
 }
 
-void mainMenu(){
+void mainMenu() {
     clearScreen();
 
     printf("Welcome to the SapiBus bus management tool!\n\n");
@@ -45,7 +41,7 @@ void mainMenu(){
     }
 }
 
-void stationMenu(){
+void stationMenu() {
     clearScreen();
 
     printf("####Station Menu####\n\n");
@@ -69,6 +65,15 @@ void loadStationMenu() {
     clearScreen();
 
     printf("####Station Menu####\n\n");
+
+    if (globalDatabase.stationCount == 0) {
+        printf("There are no stations available yet.\n");
+        printf("\nPress a key to continue...");
+        getch();
+        stationMenu();
+        return;
+    }
+
     printf("You may head to the following stations:\n");
 
     for (size_t i = 0; i < globalDatabase.stationCount; ++i) {
@@ -90,7 +95,7 @@ void loadStationMenu() {
     busMenu(station);
 }
 
-void createStationMenu(){
+void createStationMenu() {
     clearScreen();
 
     char *city_name, *station_name;
@@ -131,8 +136,6 @@ void createStationMenu(){
 
     printf("If you're happy with the changes, press a key to jump to the bus management tool..."); getch();
 
-    free(city_name); free(station_name);
-
     busMenu(station);
 }
 
@@ -142,7 +145,7 @@ void pressKeyToContinue(STATION *station) {
     busMenu(station);
 }
 
-void busMenu(STATION *station){
+void busMenu(STATION *station) {
     clearScreen();
 
     printf("####Bus management####\n\n");
@@ -172,7 +175,7 @@ void busMenu(STATION *station){
 
             BUS bus = createBus(*station, name, createTime(hour, minute));
 
-            if (busNameTakenBST(station->root, bus.name)){
+            if (busNameTakenBST(station->root, bus.name)) {
                 printf("Bus name is already taken. Please try again.\n");
 
                 printf("\nPress a key to continue...");
@@ -181,7 +184,7 @@ void busMenu(STATION *station){
                 busMenu(station);
             }
 
-            if (findQ(station->first, station->last, bus)){
+            if (findQ(station->first, station->last, bus)) {
                 printf("Bus name is already taken or another bus leaves at the same time. Please try again.\n");
 
                 printf("\nPress a key to continue...");
@@ -205,7 +208,7 @@ void busMenu(STATION *station){
 
             bus = createBus(*station, name, createTime(hour, minute));
 
-            if (busNameTakenBST(station->root, bus.name)){
+            if (busNameTakenBST(station->root, bus.name)) {
                 printf("Bus name is already taken. Please try again.\n");
 
                 printf("\nPress a key to continue...");
@@ -214,7 +217,7 @@ void busMenu(STATION *station){
                 busMenu(station);
             }
 
-            if (findBST(station->root, bus)){
+            if (findBST(station->root, bus)) {
                 printf("No two buses can leave at the same time. Please try again.\n");
 
                 printf("\nPress a key to continue...");
@@ -254,7 +257,7 @@ void busMenu(STATION *station){
             busMenu(station);
             break;
         case 6:
-            if (isEmptyBST(station->root)){
+            if (isEmptyBST(station->root)) {
                 printf("Platform is empty.\n\nPress a key to continue...");
                 getch();
                 busMenu(station);

@@ -3,4 +3,4 @@ project(project_02 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(project_02 main.c buses.c buses.h station.c station.h  bst_buses.c bst_buses.h queue_buses.c queue_buses.h time_buses.c time_buses.h buffer.c buffer.h structures.h bus_menu.c bus_menu.h file.c file.h database.c database.h)
+add_executable(project_02 main.c model/buses.c model/buses.h model/station.c model/station.h data/bst_buses.c data/bst_buses.h data/queue_buses.c data/queue_buses.h model/time_buses.c model/time_buses.h util/buffer.c util/buffer.h model/structures.h menu/bus_menu.c menu/bus_menu.h util/file.c util/file.h db/database.c db/database.h)

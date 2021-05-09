@@ -1,7 +1,3 @@
-//
-// Created by koppa on 2021. 04. 21..
-//
-
 #ifndef PROJECT_02_TIME_BUSES_H
 #define PROJECT_02_TIME_BUSES_H
 

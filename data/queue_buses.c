@@ -1,13 +1,9 @@
-//
-// Created by koppa on 2021. 04. 21..
-//
-
 #include "queue_buses.h"
 
-queueNode *createQ(){
+queueNode *createQ() {
     queueNode *new = (queueNode *) calloc(1, sizeof(queueNode));
 
-    if (new == NULL){
+    if (new == NULL) {
         printf("Error allocating memory!!!\n");
         exit(-1);
     }
@@ -17,8 +13,8 @@ queueNode *createQ(){
     return new;
 }
 
-bool isEmptyQ(queueNode *first, queueNode *last){
-    if (first == NULL || last == NULL){
+bool isEmptyQ(queueNode *first, queueNode *last) {
+    if (first == NULL || last == NULL) {
         return true;
     }
 
@@ -39,7 +35,7 @@ void addBus(queueNode **first, queueNode **last, BUS bus) {
     }
 }
 
-void enter(STATION *station, queueNode **first, queueNode **last, BUS bus){
+void enter(STATION *station, queueNode **first, queueNode **last, BUS bus) {
     if (findQ(*first, *last, bus)) {
         printf("This bus already exists. Try another one.\n");
         return;
@@ -53,7 +49,7 @@ void enter(STATION *station, queueNode **first, queueNode **last, BUS bus){
     }
 }
 
-BUS leave(STATION *station, queueNode **first, queueNode *last){
+BUS leave(STATION *station, queueNode **first, queueNode *last) {
     if (!isEmptyQ(*first, last)) {
         queueNode *temp = *first;
         BUS temp_bus = temp->bus_data;
@@ -68,7 +64,7 @@ BUS leave(STATION *station, queueNode **first, queueNode *last){
     printf("The queue is empty.\n");
 }
 
-void listQ(queueNode *first, queueNode *last){
+void listQ(queueNode *first, queueNode *last) {
     if (!isEmptyQ(first, last)) {
         queueNode *aux = first;
         int counter = 0;
@@ -97,15 +93,15 @@ int getSizeQ(queueNode *first) {
     return size;
 }
 
-bool findQ(queueNode *first, queueNode *last, BUS key){
-    if (isEmptyQ(first, last)){
+bool findQ(queueNode *first, queueNode *last, BUS key) {
+    if (isEmptyQ(first, last)) {
         return false;
     }
 
     queueNode *aux = first;
 
-    while (aux != NULL){
-        if ((!strcmp(aux->bus_data.name, key.name) && aux) || aux->bus_data.departure_time.full_time == key.departure_time.full_time){
+    while (aux != NULL) {
+        if ((!strcmp(aux->bus_data.name, key.name) && aux) || aux->bus_data.departure_time.full_time == key.departure_time.full_time) {
             return true;
         }
 

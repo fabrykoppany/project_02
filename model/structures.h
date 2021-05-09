@@ -1,7 +1,3 @@
-//
-// Created by koppa on 2021. 04. 23..
-//
-
 #ifndef PROJECT_02_STRUCTURES_H
 #define PROJECT_02_STRUCTURES_H
 
@@ -10,20 +6,20 @@
  * full_time - "hour" converted into minutes + "minute"
  * time_str - time shown in digital form (HH:MM)
  */
-typedef struct{
+typedef struct {
     int hour, minute, full_time;
     char time_str[6];
-}TIME;
+} TIME;
 
 /*
  * BUS data structure
  * name - stores the bus' name (to be generated from station details)
  * departure_time - departure time of bus in all forms
  */
-typedef struct{
+typedef struct {
     char *name;
     TIME departure_time;
-}BUS;
+} BUS;
 
 /*
  * Dynamic queue - depot
@@ -31,10 +27,10 @@ typedef struct{
  * first enters into depot, first leaves (FIFO)
  * depot has a capacity
  */
-typedef struct queueNode{
+typedef struct queueNode {
     BUS bus_data;
     struct queueNode *next;
-}queueNode;
+} queueNode;
 
 /*
  * Binary Search Tree - platform
@@ -43,10 +39,10 @@ typedef struct queueNode{
  * early < late
  * platform has a capacity
  */
-typedef struct BST_Node{
+typedef struct BST_Node {
     BUS bus_data;
     struct BST_Node *left, *right;
-}BST_Node;
+} BST_Node;
 
 /*
  * STATION data structure
@@ -56,12 +52,12 @@ typedef struct BST_Node{
  * name - name of the station itself
  * also stores both the capacity of its platform and depot
  */
-typedef struct{
+typedef struct {
     BST_Node *root;
     queueNode *first, *last;
     char *city, *name, *abbreviation;
     int platform_capacity, depot_capacity;
     int platform_size, depot_size;
-}STATION;
+} STATION;
 
 #endif //PROJECT_02_STRUCTURES_H

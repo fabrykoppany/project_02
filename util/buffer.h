@@ -1,7 +1,3 @@
-//
-// Created by koppa on 2021. 04. 22..
-//
-
 #ifndef PROJECT_02_BUFFER_H
 #define PROJECT_02_BUFFER_H
 

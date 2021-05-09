@@ -5,11 +5,11 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "file.h"
-#include "time_buses.h"
-#include "queue_buses.h"
-#include "bst_buses.h"
-#include "structures.h"
+#include "../util/file.h"
+#include "../model/time_buses.h"
+#include "../data/queue_buses.h"
+#include "../data/bst_buses.h"
+#include "../model/structures.h"
 
 #define GLOBAL_DB_FILENAME "global_db.bin"
 

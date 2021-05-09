@@ -1,11 +1,7 @@
-//
-// Created by koppa on 2021. 04. 21..
-//
-
 #ifndef PROJECT_02_BST_BUSES_H
 #define PROJECT_02_BST_BUSES_H
 
-#include "structures.h"
+#include "../model/structures.h"
 #include "queue_buses.h"
 
 #include <stdio.h>
