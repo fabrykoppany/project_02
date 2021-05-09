@@ -1,6 +1,10 @@
-#include <stdio.h>
+#include "menu/bus_menu.h"
 
 int main() {
-    printf("Hello, World!\n");
+    if (!loadGlobalDatabase()) {
+        return -1;
+    }
+
+    mainMenu();
     return 0;
 }
