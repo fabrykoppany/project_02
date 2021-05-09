@@ -23,6 +23,21 @@ bool isEmptyBST(BST_Node *root){
     return false;
 }
 
+void addBSTBus(BST_Node **root, BUS bus) {
+    if (isEmptyBST(*root)) {
+        *root = createBST();
+        (*root)->left = NULL;
+        (*root)->right = NULL;
+        (*root)->bus_data = bus;
+    } else {
+        if (bus.departure_time.full_time <= (*root)->bus_data.departure_time.full_time) {
+            addBSTBus(&(*root)->left, bus);
+        } else {
+            addBSTBus(&(*root)->right, bus);
+        }
+    }
+}
+
 void insert(STATION *station, BST_Node **root, BUS bus) {
     if (findBST(*root, bus)){
         printf("No two buses can leave at the same time.");
@@ -34,19 +49,8 @@ void insert(STATION *station, BST_Node **root, BUS bus) {
         enter(station, &station->first, &station->last, bus);
         return;
     } else {
-        if (isEmptyBST(*root)) {
-            *root = createBST();
-            (*root)->left = NULL;
-            (*root)->right = NULL;
-            (*root)->bus_data = bus;
-            ++station->platform_size;
-        } else {
-            if (bus.departure_time.full_time <= (*root)->bus_data.departure_time.full_time) {
-                insert(station, &(*root)->left, bus);
-            } else {
-                insert(station, &(*root)->right, bus);
-            }
-        }
+        addBSTBus(root, bus);
+        ++station->platform_size;
     }
 }
 
@@ -175,7 +179,7 @@ BST_Node *emptyPlatform(STATION *station, BST_Node *root){
     return root;
 }
 
-void takeBussesFromDepot(STATION *station, BST_Node **root){
+void takeBusesFromDepot(STATION *station, BST_Node **root){
     while (station->platform_capacity > station->platform_size && !isEmptyQ(station->first, station->last)){
         BUS bus = leave(station, &station->first, station->last);
         insert(station, root, bus);
@@ -190,4 +194,12 @@ void listBST(BST_Node *root) {
     listBST(root->left);
     printf("%s: leaves at %s\n", root->bus_data.name, root->bus_data.departure_time.time_str);
     listBST(root->right);
+}
+
+int sizeBST(BST_Node *root) {
+    if (root == NULL) {
+        return 0;
+    } else {
+        return sizeBST(root->left) + 1 + sizeBST(root->right);
+    }
 }

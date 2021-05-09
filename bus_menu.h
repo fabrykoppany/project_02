@@ -15,11 +15,14 @@
 #include "bst_buses.h"
 #include "queue_buses.h"
 #include "station.h"
+#include "database.h"
 
 void clearScreen();
-void mainMenu(STATION *station);
-void stationMenu(STATION *station);
-void creatStationMenu(STATION *station);
+void mainMenu();
+void stationMenu();
+void loadStationMenu();
+void createStationMenu();
+void pressKeyToContinue(STATION *station);
 void busMenu(STATION *station);
 int takeAnswer();
 

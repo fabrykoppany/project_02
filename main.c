@@ -13,9 +13,11 @@ int main() {
     strcpy(time_tester.time_str, convertHMToStr(time_tester.hour, time_tester.minute));
     convertStrToHM(time_tester.time_str, &time_tester.hour, &time_tester.minute);*/
 
-    STATION tester;
+    if (!loadGlobalDatabase()) {
+        return -1;
+    }
 
-    mainMenu(&tester);
+    mainMenu();
 
     return 0;
 }

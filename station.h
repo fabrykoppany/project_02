@@ -13,8 +13,8 @@
 #include <string.h>
 #include <ctype.h>
 
-STATION createStation(const char *city_name, const char *station_name, int platfrom_capacity, int depot_capacity);
-char *createCityStationAbbreviation(STATION station);
+STATION *createStation(const char *city_name, const char *station_name, int platform_capacity, int depot_capacity);
+char *createCityStationAbbreviation(STATION *station);
 char *getCityName();
 char *getStationName();
 

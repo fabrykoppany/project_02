@@ -15,7 +15,7 @@ char *getBuffer(){
 }
 
 char *allocateMemory(int size){
-    char *buffer = (char *) malloc(size * sizeof(char));
+    char *buffer = (char *) calloc(1, size * sizeof(char));
 
     if (buffer == NULL){
         printf("Error allocating memory!!!");
